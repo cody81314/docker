@@ -1,10 +1,14 @@
 # Use latest jboss/base-jdk:8 image as the base
 FROM jboss/base-jdk:8
 
+# Sets the Author field of the generated images
+LABEL maintainer="cody.tseng@tpinformation.com.tw"
+
 # Set the JBOSS_VERSION env variable
 ENV JBOSS_VERSION 7.1.0
 ENV JBOSS_HOME /opt/jboss/jboss-eap-$JBOSS_VERSION
 
+# Checkout user to root
 USER root
 
 COPY jboss-eap-$JBOSS_VERSION.zip /opt/jboss
@@ -20,6 +24,7 @@ RUN cd /opt/jboss \
 # Ensure signals are forwarded to the JVM process correctly for graceful shutdown
 ENV LAUNCH_JBOSS_IN_BACKGROUND true
 
+# Checkout user to jboss
 USER jboss
 
 # Add a user in administration realm
