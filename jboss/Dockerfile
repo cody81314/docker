@@ -11,6 +11,7 @@ ENV JBOSS_HOME /opt/jboss/jboss-eap-$JBOSS_VERSION
 # Checkout user to root
 USER root
 
+# Copy jboss zip file from local to container 
 COPY jboss-eap-$JBOSS_VERSION.zip /opt/jboss
 
 # Add the JBoss distribution to /opt, and make jboss the owner of the extracted tar content
